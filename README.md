@@ -1,2 +1,0 @@
-# My-Zootopia
-masterschool project
