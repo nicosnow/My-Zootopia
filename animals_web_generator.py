@@ -11,13 +11,16 @@ def get_animal_info(animal):
     """Returns the specified fields of an animal as a formatted string if they exist"""
     info = []
     if 'name' in animal:
-        info.append(f"<li class='cards__item'><div class='card__title'>Name: {animal['name']}</div>")
-    if 'diet' in animal['characteristics']:
-        info.append(f"<div class='card__text'>Diet: {animal['characteristics']['diet']}</div>")
-    if 'locations' in animal and animal['locations']:
-        info.append(f"<div class='card__text'>First Location: {animal['locations'][0]}</div>")
-    if 'type' in animal['characteristics']:
-        info.append(f"<div class='card__text'>Type: {animal['characteristics']['type']}</div></li>")
+        info.append(f"<li class='cards__item'><div class='card__title'>{animal['name']}</div>")
+    if 'diet' in animal['characteristics'] or 'locations' in animal or 'type' in animal['characteristics']:
+        info.append("<p class='card__text'>")
+        if 'diet' in animal['characteristics']:
+            info.append(f"<strong>Diet:</strong> {animal['characteristics']['diet']}<br/>")
+        if 'locations' in animal and animal['locations']:
+            info.append(f"<strong>Location:</strong> {' and '.join(animal['locations'])}<br/>")
+        if 'type' in animal['characteristics']:
+            info.append(f"<strong>Type:</strong> {animal['characteristics']['type']}<br/>")
+        info.append("</p></li>")
     return "\n".join(info)
 
 
